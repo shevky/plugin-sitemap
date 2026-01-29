@@ -1,0 +1,35 @@
+{
+    "name": "@shevky/plugin-sitemap",
+    "version": "0.0.1",
+    "description": "Shevky plugin that generates sitemap.xml during builds.",
+    "type": "module",
+    "main": "main.js",
+    "types": "index.d.ts",
+    "author": {
+        "email": "fatih@tatoglu.net",
+        "name": "Fatih Tatoğlu",
+        "url": "https://tatoglu.net"
+    },
+    "maintainers": [
+        {
+            "email": "fatih@tatoglu.net",
+            "name": "Fatih Tatoğlu",
+            "url": "https://tatoglu.net"
+        }
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/shevky/plugin-sitemap.git"
+    },
+    "bugs": {
+        "url": "https://github.com/shevky/plugin-sitemap/issues"
+    },
+    "homepage": "https://github.com/shevky/plugin-sitemap#readme",
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@shevky/base": "^0.0.1"
+    }
+}

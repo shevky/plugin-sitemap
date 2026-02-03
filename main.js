@@ -1,5 +1,7 @@
 import { i18n, plugin, format } from "@shevky/base";
 
+const PLUGIN_NAME = "shevky-sitemap";
+const PLUGIN_VERSION = "0.0.2";
 const SITEMAP_FILENAME = "sitemap.xml";
 
 const escape = (value) => format.escape(value ?? "");
@@ -81,6 +83,13 @@ const resolveUrl = (value, ctx) =>
 
 class SitemapBuilder {
   async build(ctx) {
+    const pluginConfig = ctx.config.get(PLUGIN_NAME) ?? {};
+    const sitemapFilename =
+      typeof pluginConfig.sitemapFilename === "string" &&
+      pluginConfig.sitemapFilename.trim().length > 0
+        ? pluginConfig.sitemapFilename.trim()
+        : SITEMAP_FILENAME;
+
     const includeCollections = Boolean(ctx?.config?.seo?.includeCollections);
     const entries = await this._collectContentEntries(ctx);
     const collectionEntries = includeCollections
@@ -94,7 +103,7 @@ class SitemapBuilder {
 
     const entryByLoc = this._mergeEntries(combined);
     const xml = this._renderSitemap(entryByLoc);
-    await this._writeSitemap(ctx, xml, entryByLoc.length);
+    await this._writeSitemap(ctx, xml, entryByLoc.length, sitemapFilename);
   }
 
   async _collectContentEntries(ctx) {
@@ -329,12 +338,12 @@ class SitemapBuilder {
     ].join("\n");
   }
 
-  async _writeSitemap(ctx, xml, count) {
-    const relativePath = SITEMAP_FILENAME;
+  async _writeSitemap(ctx, xml, count, sitemapFilename) {
+    const relativePath = sitemapFilename;
     const targetPath = ctx.path.combine(ctx.paths.dist, relativePath);
     await ctx.directory.create(ctx.path.name(targetPath));
     await ctx.file.write(targetPath, xml);
-    ctx.log.debug(`Sitemap has been created.`);
+    ctx.log.debug(`[${PLUGIN_NAME}] Sitemap has been created.`);
   }
 }
 
@@ -347,10 +356,5 @@ const hooks = {
   },
 };
 
-const PLUGIN = {
-  name: "shevky-sitemap",
-  version: "0.0.1",
-  hooks,
-};
-
+const PLUGIN = { name: PLUGIN_NAME, version: PLUGIN_VERSION, hooks };
 export default PLUGIN;

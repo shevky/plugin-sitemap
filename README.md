@@ -24,6 +24,11 @@ Add the plugin to your config:
   "identity": {
     "url": "https://example.com"
   },
+  "pluginConfigs": {
+    "shevky-sitemap": {
+      "sitemapFilename": "sitemap.xml"
+    }
+  },
   "seo": {
     "includePaging": true,
     "includeCollections": true
@@ -36,9 +41,13 @@ Add the plugin to your config:
 
 The sitemap will be generated at:
 
-```
+```txt
 dist/sitemap.xml
 ```
+
+### Config Options
+
+- `sitemapFilename`: Output file name (default: `sitemap.xml`)
 
 ## License
 

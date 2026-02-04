@@ -1,6 +1,6 @@
 {
     "name": "@shevky/plugin-sitemap",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Shevky plugin that generates sitemap.xml during builds.",
     "type": "module",
     "main": "main.js",
@@ -30,6 +30,6 @@
         "access": "public"
     },
     "dependencies": {
-        "@shevky/base": "^0.0.2"
+        "@shevky/base": "^0.0.3"
     }
 }

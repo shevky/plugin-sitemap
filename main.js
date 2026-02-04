@@ -1,7 +1,7 @@
 import { i18n, plugin, format } from "@shevky/base";
 
 const PLUGIN_NAME = "shevky-sitemap";
-const PLUGIN_VERSION = "0.0.2";
+const PLUGIN_VERSION = "0.0.3";
 const SITEMAP_FILENAME = "sitemap.xml";
 
 const escape = (value) => format.escape(value ?? "");
@@ -204,7 +204,9 @@ class SitemapBuilder {
     const collectionsConfig = ctx?.config?.content?.collections ?? {};
     const pages = ctx?.pages ?? {};
 
-    const configKeys = Object.keys(collectionsConfig);
+    const configKeys = Object.keys(collectionsConfig).filter(
+      (key) => key !== "includeContentFile",
+    );
     for (const configKey of configKeys) {
       const entry = collectionsConfig[configKey];
       if (!entry || typeof entry !== "object") {

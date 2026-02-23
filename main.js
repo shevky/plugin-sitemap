@@ -1,7 +1,7 @@
 import { i18n, plugin, format } from "@shevky/base";
 
 const PLUGIN_NAME = "shevky-sitemap";
-const PLUGIN_VERSION = "0.0.3";
+const PLUGIN_VERSION = "0.0.4";
 const SITEMAP_FILENAME = "sitemap.xml";
 
 const escape = (value) => format.escape(value ?? "");
